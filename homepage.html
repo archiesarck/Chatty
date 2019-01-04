@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sockets</title>
+</head>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+	var socket = io();
+	socket.on('r', function(data){
+		document.body.innerHTML = '';
+		document.write(data);
+	});
+</script>
+<body>
+	<p>
+		Hi Man!
+	</p>
+</body>
+</html>

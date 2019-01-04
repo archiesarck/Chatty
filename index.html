@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Messenger</title>
+	<link rel="stylesheet" type="text/css" href="chat_style.css">
+</head>
+<body>
+	<div id="left-div">
+		<br>
+		<img src="coverdark.jpg" style="border-radius: 50%;">
+	</div>
+	<div id="right-div">
+		<br>
+		Messenger<br><br>
+		<div id="login_div">
+			<form action="/signin" method="post">
+				<input type="text" name="username" placeholder="Username" class="login_input">
+				<input type="password" name="user_pwd" placeholder="Password" class="login_input"><br>
+				<button style="width: 76%; border-width: 0px; color: white; background-color: red;" class="login_input">Login</button>
+			</form>
+		</div>
+		<br>
+		<br>
+		<form action="/signup" method="get">
+			<input type="submit" name="submit" value="Sign Up" id="signup_btn">
+		</form>
+		<br>	
+	</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chat</title>
+</head>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+	var socket = io();
+
+	function setUsername() {
+		socket.emit('setUsername', document.getElementById('name').value);
+	}
+
+	var user;
+	socket.on('userExists', function(data){
+		document.getElementById('error').innerHTML = data;
+	});
+
+	socket.on('userSet', function(data){
+		user = data.user;
+		document.body.innerHTML = '<input type="text" name="message" id="message"><div id="friends"></div><div id="message-container"></div>';
+	});
+
+	function sendMessage(frd) {
+		var msg = document.getElementById('message').value;
+		if(msg){
+			socket.emit('msg', {message: msg, from: user, to: frd});
+		}
+	}
+
+	socket.on('newmsg', function(data){
+			document.getElementById('message-container').innerHTML += '<div><b>'+data.from+'</b>: '+data.message+'</div>';
+	});
+
+	socket.on('online', function(friends){
+		document.getElementById('friends').innerHTML = '';
+		for (var i = 0; i < friends.length; i++) {
+			document.getElementById('friends').innerHTML += '<button type="button" id="'+friends[i]+'" onclick="sendMessage(this.id)">'+friends[i]+'</button><br>';
+		}
+	});
+</script>
+<body>
+	<div id="error"></div>
+	<input type="text" name="name" id="name">
+	<button type="button" name="button" onclick = "setUsername()">Let me chat!</button>
+
+</body>
+</html>
