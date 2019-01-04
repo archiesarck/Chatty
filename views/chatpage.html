@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome</title>
+	<link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+<script type="text/javascript">
+	var socket = io();
+
+	socket.emit('i_am_on','<%=id%>');
+
+	socket.on('checked', function(data){
+		document.body.innerHTML += '<div id="friends_list"></div>';
+		document.getElementById('friends_list').innerHTML = '<form id="log_btn" action="/logout" method="post"><hr style="color: red;"><table style="width: 100%;"><tr style="width: 100%;"><td style="width: 100%;"><input type="submit" name="submit" value="Logout" id="logout_btn" style="width: 100%;"></td></tr></table></form>';
+		document.getElementById('name_div').innerHTML = data.ua[0];
+		for(var i = 0; i<data.ua.length; i++){
+			if (data.uia[i]=='<%=id%>') {
+				continue;
+			}
+			document.getElementById('friends_list').innerHTML += '<div style="color: white; padding: 10px; border-right: 2px solid red;"><button id="name_btn" onclick="setId(\''+data.ua[i]+'\',\''+data.uia[i]+'\')"><b>&nbsp'+data.ua[i]+'</b></button></div>';
+		}
+	});
+
+	var to;
+	function setId(frd_name, frd_id){
+		document.getElementById('name_div').innerHTML = frd_name;
+		to = frd_id;
+		document.getElementById('chat_div').innerHTML = '';
+		socket.emit('onscreen_frd', {frd: frd_id, me: '<%=id%>'});
+	}
+
+	socket.on('onscreen_chat', function(data){
+		for(var i = 0; i<data.length; i++){
+			if(data[i].to==to){
+				document.getElementById('chat_div').innerHTML += '<div id="sent_msg">'+data[i].message+'</div><br><br>';
+			}
+			else if(data[i].from_id==to){
+				document.getElementById('chat_div').innerHTML += '<div id="recieved_msg">'+ data[i].message+'</div><br><br>';
+			}
+		}
+	});
+
+	function message() {
+		var msg = document.getElementById('message_box').value;
+		document.getElementById('chat_div').innerHTML += '<div id="sent_msg">'+msg+'</div><br><br>';
+		socket.emit('message',{m: msg, t: to, f:{ id: '<%=id%>', name: '<%=name%>'} });
+	}
+
+	socket.on('newMessage', function(data){
+		//document.getElementById('chat_div').innerHTML += '<div id="recieved_msg">'+data.f + ' : ' + data.m+'</div><br>';
+		if (data.f.id==to) {
+			document.getElementById('chat_div').innerHTML += '<div id="recieved_msg">'+ data.m+'</div><br><br>';
+		}
+	});
+
+	function logout() {
+		socket.emit('logout','');
+	}
+</script>
+
+<body>
+	<div id="chat_area">
+		<div id="name_div"></div>
+		<div id="chat_div">
+			
+		</div>
+		<div id="message_div">
+			<hr style="color: red;">
+			<table style="width: 100%;">
+					<tr style="width: 100%;">
+						<td style="width: 70%;">
+							<input type="test" name="message" placeholder="Type message here...." id="message_box">
+						</td>
+						<td style="width: 25%;">
+							<button id="send_btn" onclick="message()">Send</button>
+						</td>
+					</tr>
+			</table>	
+		</div>
+	</div>
+</body>
+</html>
