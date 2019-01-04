@@ -1,1 +1,149 @@
-
+body {
+	/*background-image: url("chat.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: 100%;*/
+	background-color: black;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+.login_input {
+	width: 70%;
+	display: inline-block;
+	font-size: 20px;
+	border-radius: 15px;
+	border-width: 2px;
+	border-color: red;
+	padding: 10px;
+}
+#left-div {
+	width: 50%;
+	float: left;
+	font-size: 50px;
+	text-align: center;
+	color: white;
+}
+#right-div {
+	width: 50%;
+	float: right;
+	font-size: 50px;
+	color: white;
+	text-align: center;
+}
+#login_div {
+	width: 60%;
+	background-color: white;
+	color: black;
+	border-radius: 8px;
+	display: inline-block;
+	text-align: center;
+	padding: 20px;
+	/*opacity: 0.5;*/
+}
+#signup_btn {
+	width: 66%;
+	padding: 10px;
+	font-size: 20px;
+	border-width: 0px;
+	background-color: red;
+	color: white;
+	border-radius: 10px;
+}
+#friends_list {
+	width: 28%;
+	float: left;
+	font-size: 30px;
+	position: fixed;
+	height: 100%;
+}
+#chat_area {
+	width: 70%;
+	float: right;
+	color: white;
+	font-size: 30px;
+	text-align: center;
+}
+#message_div {
+	bottom: 0px;
+	position: fixed;
+	width: 70%;
+	background-color: black;
+}
+#message_box {
+	width: 100%;
+	border-width: 2px;
+	border-style: solid;
+	border-radius: 10px;
+	border-color: red;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: black;
+	color: white;
+}
+#send_btn {
+	width: 90%;
+	border-radius: 10px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: red;
+	background-color: black;
+	color: red;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+#name_div {
+	top: 0px;
+	position: fixed;
+	width: 70%;
+	text-align: center;
+	padding-top: 5px;
+	background-color: black;
+}
+#chat_div {
+	width: 100%;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+#name_btn {
+	background-color: black;
+	width: 100%;
+	color: red;
+	border: 0px;
+	font-size: 20px;
+	text-align: left;
+}
+#log_btn {
+	bottom: 0px;
+	width: 28%;
+	position: fixed;
+	background-color: black;	
+}
+#sent_msg {
+	max-width: 70%;
+	float: right;
+	font-size: 20px;
+	border: 2px solid red;
+	border-radius: 10px;
+	padding: 10px;
+	text-align: left;
+}
+#recieved_msg {
+	max-width: 70%;
+	float: left;
+	font-size: 20px;
+	border: 2px solid red;
+	border-radius: 10px;
+	padding: 10px;
+	text-align: left;
+}
+#logout_btn {
+	width: 100%;
+	border-radius: 10px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: red;
+	background-color: black;
+	color: red;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
