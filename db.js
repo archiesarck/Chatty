@@ -163,4 +163,4 @@ app.post('/logout', function(req, res){
 	});
 });
 
-http.listen(80);
+http.listen(process.env.PORT || 80);
