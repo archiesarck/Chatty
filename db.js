@@ -36,8 +36,8 @@ const mongoose = require('mongoose');
 // }).on('error', function(error){
 // 	console.log('Error');
 // });
-var conn_user = mongoose.createConnection('mongodb://localhost/user');
-var conn_msg = mongoose.createConnection('mongodb://localhost/messages');
+var conn_user = mongoose.createConnection('mongodb://archies:rckQ1237@ds249992.mlab.com:49992/user');
+var conn_msg = mongoose.createConnection('mongodb://archies:rckQ1237@ds237848.mlab.com:37848/messages');
 // mongoose.connect('mongodb://localhost/messages');
 // mongoose.connection.once('open', function(){
 // 	console.log('Connected');
